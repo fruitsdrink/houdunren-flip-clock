@@ -16,7 +16,9 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div id="hd"></div>
+  <main>
+    <div id="hd"></div>
+  </main>
 </template>
 <style lang="scss"></style>
 @renderer/composables/flip-clock

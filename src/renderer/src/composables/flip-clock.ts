@@ -26,8 +26,6 @@ export class FlipClock extends FlipNumber {
     this.intervalId = setInterval(() => {
       this.getNums()
       this.updateDivNumber()
-      // console.log('render...')
-      // console.log(this.nums)
       if (this.nums.filter((n) => n > 0).length === 0) {
         clearInterval(this.intervalId)
       }
@@ -45,9 +43,11 @@ export class FlipClock extends FlipNumber {
       if (Number(div.dataset.before) !== before) {
         div.classList.add('flipDown')
       }
-
-      div.addEventListener('animationed', () => {
+      // console.log('updateDivNumber')
+      div.addEventListener('animationend', () => {
+        console.log('animationend')
         divs.forEach((div) => {
+          console.log({ before, after })
           div.dataset.before = before.toString()
           div.dataset.after = after.toString()
         })
