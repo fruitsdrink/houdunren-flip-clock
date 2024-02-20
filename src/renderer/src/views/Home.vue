@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { FlipClock } from '@renderer/composables/flip-clock'
 import { onMounted } from 'vue'
-import '@renderer/assets/flip-clock.scss'
+import '@renderer/assets/css/flip-clock.scss'
 
 onMounted(() => {
   const clock = new FlipClock({
     el: '#hd',
-    type: 'timing',
+    type: 'clock',
     style: 'base',
     timing: {
-      second: 100
+      second: 10
     }
   })
   clock.render()
 })
 </script>
 <template>
-  <main>
+  <main class="drag">
     <div id="hd"></div>
   </main>
 </template>

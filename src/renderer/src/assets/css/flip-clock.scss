@@ -1,18 +1,9 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-:root {
-  --width: 50px;
-  --height: 80px;
-  --bgColor: #000;
-}
+@import './base';
 
 body {
   width: 100%;
   height: 100vh;
-  background-color: #1abc9c;
+  // background-color: #1abc9c
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,17 +15,19 @@ body {
 
   > p::after {
     content: ':';
-    display: inline-block;
-    width: 50px;
-    height: var(--height);
-    line-height: var(--height) !important;
-    font: bold var(--height) arial;
+    width: 10px;
+    height: $height;
+    line-height: $height !important;
+    font: bold $height arial;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   section {
-    width: var(--width);
-    height: var(--height);
+    width: $width;
+    height: $height;
     position: relative;
     perspective: 300px;
 
@@ -42,20 +35,20 @@ body {
       position: absolute;
       &::before,
       &::after {
-        background-color: var(--bgColor);
+        background-color: $bgColor;
         border-radius: 5px;
-        width: var(--width);
-        height: calc(var(--height) / 2);
-        font: bold var(--height) arial;
-        line-height: var(--height);
+        width: $width;
+        height: calc($height / 2);
+        font: bold $height arial;
+        line-height: $height;
         overflow: hidden;
         text-align: center;
         display: block;
-        color: #fff;
+        color: $color;
       }
       &::before {
         content: attr(data-after);
-        line-height: var(--height);
+        line-height: $height;
       }
       &::after {
         content: attr(data-before);
@@ -64,8 +57,8 @@ body {
     }
 
     > div:nth-child(2) {
-      width: var(--width);
-      height: calc(var(--height) / 2);
+      width: $width;
+      height: calc($height / 2);
       transform-origin: bottom;
       transform-style: preserve-3d;
       backface-visibility: hidden;
@@ -76,7 +69,7 @@ body {
         line-height: 0;
       }
       &::after {
-        line-height: var(--height);
+        line-height: $height;
         position: absolute;
         top: 0;
       }

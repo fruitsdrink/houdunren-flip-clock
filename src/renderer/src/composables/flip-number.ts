@@ -40,9 +40,8 @@ export class FlipNumber {
 
   // 获取时钟数字
   getClockNums() {
-    this.nums = new Date()
-      .toLocaleDateString()
-      .replaceAll(':', '')
+    this.nums = dayjs()
+      .format('HHmmss')
       .split('')
       .map((n) => +n)
   }
@@ -53,7 +52,6 @@ export class FlipNumber {
     const hour = this.endTime.diff(now, 'hour')
     const minute = this.endTime.diff(now.add(hour, 'hour'), 'minute')
     const second = this.endTime.diff(now.add(hour, 'hour').add(minute, 'minute'), 'second')
-    // console.log({ hour, minute, second })
     // 格式化数字为带前导0的字符串
     const hourStr = String(hour).padStart(2, '0')
     const minuteStr = String(minute).padStart(2, '0')
