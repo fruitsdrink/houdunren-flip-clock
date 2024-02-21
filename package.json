@@ -25,6 +25,7 @@
     "@electron-toolkit/utils": "^3.0.0",
     "dayjs": "^1.11.10",
     "electron-updater": "^6.1.7",
+    "pinia": "^2.1.7",
     "vue-router": "4"
   },
   "devDependencies": {

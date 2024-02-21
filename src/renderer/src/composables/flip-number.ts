@@ -4,7 +4,7 @@ import type { Dayjs } from 'dayjs'
 export interface FlipNumberOptions {
   el: string
   type: 'timing' | 'clock'
-  style: string
+  style?: string
   timing?: {
     hour?: number
     minute?: number
