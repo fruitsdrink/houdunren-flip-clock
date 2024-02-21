@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { FlipClock } from '@renderer/composables/flip-clock'
 import { onMounted } from 'vue'
+import Footer from '@renderer/components/footer.vue'
 import '@renderer/assets/css/flip-clock.scss'
 
 onMounted(() => {
@@ -16,8 +17,9 @@ onMounted(() => {
 })
 </script>
 <template>
-  <main class="drag">
+  <main>
     <div id="hd"></div>
+    <Footer></Footer>
   </main>
 </template>
 <style lang="scss"></style>

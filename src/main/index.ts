@@ -2,12 +2,13 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import './ipc'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 460,
-    height: 120,
+    width: 400,
+    height: 110,
     x: 1500,
     y: 50,
     show: false,
@@ -23,6 +24,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
+
+  // mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   if (is.dev) {
     mainWindow.webContents.toggleDevTools()

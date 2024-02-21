@@ -13,12 +13,14 @@ export class FlipClock extends FlipNumber {
   }
 
   private addCssElement() {
-    document.head.insertAdjacentHTML(
-      'afterbegin',
-      `
-      <link rel="stylesheet" href="${this.options.style}.css" />
-      `
-    )
+    if (this.options.style) {
+      document.head.insertAdjacentHTML(
+        'afterbegin',
+        `
+        <link rel="stylesheet" href="${this.options.style}.css" />
+        `
+      )
+    }
   }
 
   render() {

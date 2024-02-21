@@ -6,7 +6,7 @@ body {
   // background-color: #1abc9c
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
 }
 .flip-clock {
@@ -19,6 +19,7 @@ body {
     height: $height;
     line-height: $height !important;
     font: bold $height arial;
+    color: $color;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -33,8 +34,11 @@ body {
 
     > div {
       position: absolute;
+      border: none;
+
       &::before,
       &::after {
+        border: none;
         background-color: $bgColor;
         border-radius: 5px;
         width: $width;
