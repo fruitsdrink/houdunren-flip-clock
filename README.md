@@ -11,13 +11,13 @@ An Electron application with Vue and TypeScript
 ### Install
 
 ```bash
-$ pnpm install
+pnpm install
 ```
 
 ### Development
 
 ```bash
-$ pnpm dev
+pnpm dev
 ```
 
 ### Build
@@ -31,4 +31,10 @@ $ pnpm build:mac
 
 # For Linux
 $ pnpm build:linux
+```
+
+## macos 解决 xxx已损坏，无法打开
+
+```bash
+xattr -cr /Applications/flip-clock.app
 ```

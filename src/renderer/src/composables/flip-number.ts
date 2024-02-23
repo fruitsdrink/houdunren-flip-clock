@@ -15,6 +15,21 @@ export class FlipNumber {
   protected nums: number[] = []
   private endTime: Dayjs
   constructor(protected options: FlipNumberOptions) {
+    this.config(options)
+    this.endTime = dayjs()
+    // this.options = Object.assign({ type: 'clock' }, options)
+    // this.endTime = dayjs()
+
+    // if (this.options.type !== 'clock' && this.options.timing) {
+    //   Object.entries(this.options.timing).forEach(([key, value]) => {
+    //     // console.log({ key, value })
+    //     // console.log('test: ', this.endTime.add(value, 'second'))
+    //     this.endTime = this.endTime.add(value, key as 'hour' | 'minute' | 'second')
+    //   })
+    // }
+  }
+
+  config(options: FlipNumberOptions) {
     this.options = Object.assign({ type: 'clock' }, options)
     this.endTime = dayjs()
 
@@ -25,6 +40,8 @@ export class FlipNumber {
         this.endTime = this.endTime.add(value, key as 'hour' | 'minute' | 'second')
       })
     }
+
+    return this
   }
 
   // 获取下一个数字

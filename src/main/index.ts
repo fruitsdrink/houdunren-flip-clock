@@ -1,16 +1,21 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './ipc'
 
+let isQuitting = false
+
 function createWindow(): void {
+  const display = screen.getPrimaryDisplay()
+  console.log('display', display)
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 400,
-    height: 110,
-    x: 1500,
-    y: 50,
+    height: 600,
+    x: display.bounds.width - 400,
+    y: 0,
     show: false,
     alwaysOnTop: true,
     frame: false,
@@ -18,6 +23,7 @@ function createWindow(): void {
     autoHideMenuBar: true,
     resizable: false,
     maximizable: false,
+    hasShadow: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -25,6 +31,8 @@ function createWindow(): void {
     }
   })
 
+  // mainWindow.setBackgroundColor('#00000')
+  // mainWindow.webContents.setFrameRate(60)
   // mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   if (is.dev) {
@@ -33,6 +41,13 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+  })
+
+  mainWindow.on('close', (event) => {
+    if (!isQuitting) {
+      event.preventDefault()
+      mainWindow.hide()
+    }
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -82,6 +97,15 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+app.on('before-quit', () => {
+  isQuitting = true
+})
+
+process.on('uncaughtException', (error) => {
+  console.log('uncaughtException', error)
+  app.exit(1)
 })
 
 // In this file you can include the rest of your app"s specific main process
